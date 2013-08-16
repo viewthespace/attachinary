@@ -145,7 +145,7 @@
     redraw: ->
       @$filesContainer.empty()
 
-      if @files.length > 0
+      if @files.length > -1
         @$filesContainer.append @makeHiddenField(JSON.stringify(@files))
 
         @$filesContainer.append @config.render(@files)
