@@ -79,6 +79,7 @@
 
 
       @$input.bind 'fileuploaddone', (event, data) =>
+        data.result.filename = data.files[0].name
         @addFile(data.result)
 
 
