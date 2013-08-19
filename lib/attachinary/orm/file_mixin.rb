@@ -22,7 +22,7 @@ module Attachinary
 
     def fullpath(options={})
       format = options.delete(:format)
-      Cloudinary::Utils.cloudinary_url(path(format), options)
+      Cloudinary::Utils.cloudinary_url(path(format), options.merge(resource_type: resource_type))
     end
 
   private
