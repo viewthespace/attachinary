@@ -85,6 +85,7 @@
 
 
       @$input.bind 'fileuploaddone', (event, data) =>
+        data.result.filename = data.files[0].name
         @addFile(data.result)
 
 
@@ -157,7 +158,7 @@
     redraw: ->
       @$filesContainer.empty()
 
-      if @files.length > 0
+      if @files.length > -1
         @$filesContainer.append @makeHiddenField(JSON.stringify(@files))
 
         @$filesContainer.append @config.render(@files)
