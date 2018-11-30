@@ -41,6 +41,9 @@ module Attachinary
         input = input.map{ |el| process_input(el, upload_options, scope) }.flatten.compact
         input = nil if input.empty?
         input
+      # adding this case as a result of https://github.com/assembler/attachinary/issues/159
+      when ActionController::Parameters
+        process_hash(input, scope)
       else
         input
       end
