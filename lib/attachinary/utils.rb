@@ -14,9 +14,8 @@ module Attachinary
         file = if Rails::VERSION::MAJOR == 3
                  Attachinary::File.new hash.slice(*Attachinary::File.attr_accessible[:default].to_a)
                else
-                 #calling to_h because strong_params does not have method #symbolize_keys!
-                 h = hash.to_h.symbolize_keys
-                 permitted_params = ActionController::Parameters.new(h.slice(:public_id, :version, :width, :height, :format, :resource_type, :filename)).permit!
+                 #calling to_h because strong_params does not have method #symbolize_keys
+                 permitted_params = ActionController::Parameters.new(hash.to_h.symbolize_keys.slice(:public_id, :version, :width, :height, :format, :resource_type, :filename)).permit!
                  Attachinary::File.new(permitted_params)
                end
         file.scope = scope.to_s if scope && file.respond_to?(:scope=)
